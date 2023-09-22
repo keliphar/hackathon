@@ -1,0 +1,28 @@
+.navbar-item{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.scolor-1{
+    background-color: #3d441e;
+}
+
+.scolor-2{
+    background-color: #6d712e;
+}
+
+.scolor-3{
+    background-color: #737b4c;
+}
+
+.scolor-4{
+    background-color: #a2a569;
+}
+
+.scolor-5{
+    background-color: #b0aa7e;
+}
+
+.pesan-btn{
+    padding: 5px 15px;
+}
