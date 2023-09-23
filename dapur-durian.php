@@ -16,15 +16,15 @@
         </div>
     </div>
     <div class="container-fluid scolor-5">
-        <h2 class="text-center pt-4"><b>Pilihan Olahan</b></h2>
+        <h2 class="text-center pt-4" data-aos="fade-down" data-aos-duration="2000" data-aos-once="true" data-aos-offset="-150" data-aos-delay="1000"><b>Pilihan Olahan</b></h2>
         <?php
             $stmt = $pdo->query("SELECT * FROM olahan");
             $count = 0;
-            echo '<div class="row align-items-center justify-content-evenly pt-5 px-2">';
+            echo '<div class="row align-items-center justify-content-evenly pt-5 px-2" data-aos="fade-down" data-aos-duration="2000" data-aos-once="true" data-aos-offset="-150" data-aos-delay="2000">';
             while($data = $stmt->fetch()) {
                 if($count % 3 == 0 && $count > 1) {
                     echo '</div>';
-                    echo '<div class="row align-items-center justify-content-evenly pt-5 px-2">';
+                    echo '<div class="row align-items-center justify-content-evenly pt-5 px-2" data-aos="fade-down" data-aos-duration="2000" data-aos-once="true" data-aos-offset="-150">';
                 }
                 echo '<div class="col-3 card text-center" style="width: 18rem;">';
                 // echo '<div class="card text-center" style="width: 18rem;">';
@@ -41,7 +41,7 @@
     </div>
     <div class="container-fluid scolor-5 con">
         <div class="row">
-            <h3 class="text-center pt-4 text-dark fw-bolder">Pesan Sekarang!!</h3>
+            <h3 class="text-center pt-4 text-dark fw-bolder" style="margin-bottom: 20px; margin-top: 20px;">Tunggu Apalagi? Segera Pesan Sekarang!</h3>
             <div class="col-3"></div>
             <div class="col-6 mx-5 my-3 d-flex justify-content-center" style="margin-left: 200px;">
                 <?php
@@ -155,7 +155,7 @@
                 <div class="col-3" style="margin-left: 115px;"></div>
                 <div class="col ms-5">
                 <button type="submit" class="btn btn-light ms-5" data-bs-toggle="modal" data-bs-target="#Book" id="bookbtn">Book Now</button>
-                <h6 class="mt-1 text-dark" style="margin-left: -70px;">*pemesanan > 20 orang booking melalui WA</h6>
+                <h6 class="mt-3 mb-4 text-dark" style="margin-left: -70px;">*pemesanan >20 orang booking melalui WA</h6>
                 </div>
             </div>
         </div>

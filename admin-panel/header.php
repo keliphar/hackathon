@@ -1,6 +1,7 @@
 <?php
     require_once "../connectDB.php";
     // session_start();
+    $CSS = "../style.css";
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +18,11 @@
     <nav class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
         <div class="container">
             <div class="navbar-brand p-0 text-light">
-                <a class="navbar-logo text-decoration-none text-reset" href="index.php">Durian Slumbung</a>
+                <a class="navbar-logo text-decoration-none text-reset" href="index.php" style="margin-left: -200px;">Durian Slumbung</a>
             </div>
             <div class="collapse navbar-collapse">
                 <div class="col col-2 col-lg-1 text-lg-end mb-3 mb-lg-0 d-flex text-light">
-                    <a href="keluarAdmin.php">Logout</a>
+                <a href="keluarAdmin.php"><button class="btn btn-success" style="margin-left: 1400px;">Logout</button></a>
                 </div>
             </div>
         </div>

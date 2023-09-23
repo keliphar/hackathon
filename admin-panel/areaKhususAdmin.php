@@ -20,11 +20,11 @@
 <div class="container-fluid text-center">
     <div class="row" id="container">
         <div class="col-2 bg-dark-subtle vh-100">
-            <h1>Fitur Admin</h1>
+            <h1 style="margin-top: 20px;">Fitur Admin</h1>
             <form action="" method="get">
-                <input type="submit" value="Lihat Order" class="btn btn-success mt-4" name="view">
-                <input type="submit" value="Tambah Barang" class="btn btn-success mt-4" name="view">
-                <input type="submit" value="Atur Stok" class="btn btn-success mt-4" name="view">
+                <input type="submit" value="Lihat Order" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
+                <input type="submit" value="Tambah Barang" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
+                <input type="submit" value="Atur Stok" class="btn btn-success mt-4" name="view" style="width: 200px;">
             </form>
         </div>
         <div class="col bg-body-secondary" id="content">
@@ -39,7 +39,7 @@
                 $stmt = $pdo -> prepare("SELECT inv_id,nama,sesi,tgl_pesan,bukti_bayar,nowa,status from book_olahan ORDER BY tgl_pesan DESC;");
                 $stmt -> execute();
                 $data = $stmt -> fetchAll();
-                echo "<h1 style='text-align:center'>List Orderan</h1>";
+                echo "<h1 style='text-align:center; margin-top: 20px;'>List Orderan</h1>";
                 foreach ($data as $key) {
                     $outlineModal;
                     if($key['status']==0){
@@ -79,7 +79,7 @@
                     ";
                 }
             }else if($viewpage == "Tambah Barang"){
-                echo "<h1 style=''>Tambah Barang</h1>";
+                echo "<h1 style='margin-top: 20px;'>Tambah Barang</h1>";
                 echo "
                 <form action='tambahOlahan.php' method='post' enctype='multipart/form-data'>
                     <div class='row align-items-start'>
@@ -104,7 +104,7 @@
                         echo '<div class="row">';
                     }
                     // echo '<div class="col>"';
-                    echo '<div class="card admin-card" style="width: 18rem;">';
+                    echo '<div class="card admin-card" style="width: 18rem; margin-left: 16px;">';
                     echo '<img src="../asset/foto_olahan/' . $data['img'] . '" class="card-img-top" alt="...">';
                     echo '<div class="card-body">';
                     echo '<p class="card-text"> <b>' . $data['nama'] . '</b></p>';
@@ -119,7 +119,7 @@
                 }
                 echo '</div>';
             }else if($viewpage == "Atur Stok"):?>
-                <div class="container-fluid scolor-5 con" style="overflow: hidden;">
+                <div class="container-fluid" style="overflow: hidden; margin-top: -25px;">
                         <div class="row">
                             <div class="row mx-5 my-3">
                                 <?php
