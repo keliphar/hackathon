@@ -8,3 +8,6 @@ require_once("./navbar.php");
 <div class="home-content scolor-5">
     <?php require_once("./video.php");?>
 </div>
+
+<?php require_once("./konten-home.php"); ?>
+
