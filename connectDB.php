@@ -17,9 +17,7 @@
     $username = "root";
     $password = "";
 
-
     $pdo;
-
 
     try{
         $pdo = new PDO($conn_string, $username, $password);
