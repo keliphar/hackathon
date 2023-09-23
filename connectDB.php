@@ -12,12 +12,14 @@
     $host = "localhost";
     $dbname = "durian_slumbung";
 
-    $conn_string = "mysql:host=$host;dbname=$dbname;chartset=UTF8";
+    $conn_string = "mysql:host=$host;dbname=$dbname;chatset=UTF8";
 
     $username = "root";
     $password = "";
 
+
     $pdo;
+
 
     try{
         $pdo = new PDO($conn_string, $username, $password);
