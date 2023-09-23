@@ -17,9 +17,7 @@
     </form>
     <script>
         function login() {
-            console.log("coba");
             if(document.getElementById('username').value == 'admin' && document.getElementById('password').value == 'admin') {
-                console.log("berhasil");                
                 window.location.replace("admin-panel/adminBolehMasuk.php");
                 // window.location.href = "adminBolehMasuk.php";
             }
