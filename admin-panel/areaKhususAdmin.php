@@ -9,6 +9,7 @@
     $css = "";
     // require_once("../connectDB.php");
     require_once("./header.php");
+    require_once "../connectDB.php";
 ?>
 <div class="container-fluid text-center">
     <div class="row" id="container">
@@ -75,20 +76,38 @@
                 echo "<h1 style='text-align:center'>Tambah Barang</h1>";
                 echo "
                 <div style='max-width:50%' class='position-absolute start-50'>
-                    <form action='admin-panel.php' method='get'>
+                    <form action='tambahOlahan.php' method='post' enctype='multipart/form-data'>
                         <div class='mb-3'>
-                            <label for='inputNama' class='form-label'>Nama Barang</label>
-                            <input type='text' class='form-control' id='inputNama' name='inputBarang'>
+                            <label for='inputBarang' class='form-label'>Nama Barang</label>
+                            <input type='text' class='form-control' id='inputBarang' name='inputBarang'>
                         </div>
                         <div class='mb-3'>
                             <label for='inputFoto' class='form-label'>Upload Foto Barang</label>
-                            <input type='file' class='form-control' id='inputFoto' name='inputFoto'>
+                            <input type='file' class='form-control' id='inputFoto' name='inputFoto' accept='image/*'>
                         </div>                        
                         <button type='submit' class='btn btn-primary'>Submit</button>
                     </form>
                 </div>";
+                $stmt = $pdo->query("SELECT * FROM olahan");
+                $count = 0;
+                echo '<div class="row">';
+                while($data = $stmt->fetch()) {
+                    if($count % 3 == 0) {
+                        if($count > 0)
+                            echo '</div>';
+                        echo '<div class="row">';
+                    }
+                    echo '<div class="col>"';
+                    echo '<div class="card" style="width: 18rem;">';
+                    echo '<img src="' . $data['img'] . '" class="card-img-top" alt="...">';
+                    echo '<div class="card-body">';
+                    echo '<p class="card-text">' . $data['nama'] . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    $count++;
+                }
+                echo '</div>';
             }else if($viewpage == "Atur Stok"){
-                
             }
             // }else{
             //     echo "Tidak masuk";
