@@ -33,6 +33,7 @@ section{
     font-size: 10px;
 }
 
+t
 .hidden-1{
     opacity: 0;
     transition: all 2s;
@@ -62,11 +63,9 @@ section{
     min-height: 200px;
 }
 
-<<<<<<< Updated upstream
+
 .con{
     overflow: hidden;
-=======
+
 .info-footer{
     font-size: 14px;
->>>>>>> Stashed changes
-}

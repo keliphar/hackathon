@@ -16,7 +16,7 @@
             <div class="container-fluid custom-box scolor-4">
                 <div class="row">
                     <div class="col-9">
-                        <h2>DURIAN YANG MATANG DARI POHONNYA</h2> 
+                        <h2>DURIAN YANG MATANG DARI POHONNYA</h2>
                         <p>
                             Durian Slumbung yang kami panen adalah durian yang matang saat akan dipetik sehingga memberikan rasa yang lebih enak dibandingkan
                             durian durian lain yang dipetik saat mentah.
