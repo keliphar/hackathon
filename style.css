@@ -33,12 +33,6 @@ section{
     font-size: 10px;
 }
 
-.show{
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0);
-}
-
 .custom-box{
     width: 80%;
     border-radius: 15px; /* Adds rounded edges */

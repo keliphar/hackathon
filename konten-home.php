@@ -13,13 +13,13 @@
 </head>
 <body>
     <script>
-    AOS.init();
+        AOS.init();
     </script>
     <div class="container-fluid scolor-5 pt-5 pb-3">
-        <h1 class="text-center">Durian Kebanggaan Kami</h1>
+        <h1 class="text-center" data-aos="fade-down" data-aos-duration="2000" data-aos-once="true" data-aos-offset="-150">Durian Kebanggaan Kami</h1>
     </div>
     <div class="container-fluid scolor-5 con">
-        <div data-aos="fade-right" data-aos-duration="2000" data-aos-once="true" class="py-5">
+        <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="pb-5">
             <div class="container-fluid custom-box">
                 <div class="row">
                     <div class="col-9">
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div data-aos="fade-left" data-aos-duration="2000" data-aos-once="true" class="py-5">
+        <div data-aos="fade-left" data-aos-duration="2000" data-aos-once="true" class="pb-5">
             <div class="container-fluid custom-box">
                 <div class="row">
                     <div class="col-3">
