@@ -1,5 +1,6 @@
 <?php
     $title = "Dapur Durian";
+
     $CSS = "./style.css";
     require_once('connectDB.php');
     include_once 'navbar.php';
@@ -267,6 +268,7 @@
                 document.getElementById("tahun").innerHTML = parseInt(document.getElementById("tahun").innerHTML) + 1
             document.getElementById("bulan").innerHTML = month[idx % 12]
             var prev = document.getElementById("clicked")
+
             if(prev != null && prev.classList.contains('btn-dark')) {
                 prev.classList.remove('btn-dark')
                 // prev.classList.add('btn-outline-primary')
