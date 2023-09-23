@@ -151,9 +151,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- <button type="submit" class="btn btn-light ms-5" data-bs-toggle="modal" data-bs-target="#Book" id="bookbtn">Book Now</button>
-    <h6>*pemesanan > 20 book by WA</h6> -->
 
     <div class="modal fade" id="Book" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bookPop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -287,6 +284,7 @@
                 document.getElementById("tahun").innerHTML = parseInt(document.getElementById("tahun").innerHTML) + 1
             document.getElementById("bulan").innerHTML = month[idx % 12]
             var prev = document.getElementById("clicked")
+            document.getElementById("sesiOlahan").innerHTML = "";
             if(prev != null && prev.classList.contains('btn-dark')) {
                 prev.classList.remove('btn-dark')
                 // prev.classList.add('btn-outline-primary')

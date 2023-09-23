@@ -6,11 +6,13 @@
         header("Location: ../selainAdminDilarangMasuk.php");
     }
     $title = "Admin Panel";
-    $css = "";
+    $css = "../style.css";
     // require_once("../connectDB.php");
     require_once("./header.php");
     require_once "../connectDB.php";
 ?>
+<link rel="stylesheet" href="../style-kalender.css">
+<script src="../script-kalender.js"></script>
 <div class="container-fluid text-center">
     <div class="row" id="container">
         <div class="col-2 bg-dark-subtle vh-100">
@@ -107,16 +109,109 @@
                     $count++;
                 }
                 echo '</div>';
-            }else if($viewpage == "Atur Stok"){
-            }
-            // }else{
-            //     echo "Tidak masuk";
-            // }
-
-            ?>
+            }else if($viewpage == "Atur Stok"):?>
+                <div class="container-fluid scolor-5 con">
+                        <div class="row">
+                            <div class="row mx-5 my-3">
+                                <?php
+                                    $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+                                    $currentDateTime = new DateTime('now');
+                                    $date = $currentDateTime->format('Y-m-01');
+                                    $date_obj = new DateTime($date);
+                                    $day = $date_obj->format('D');
+                                    $lastDay = strtotime("Last day of " . $currentDateTime->format('M'));
+                                    $lastDate = date("d", $lastDay);
+                                    $prevMonth = strtotime("last day of previous month");
+                                    $prevMonth = date("d", $prevMonth);
+                                    echo '<div class="col">';
+                                    require_once('../kalendar.php')
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+            <?php endif?>
         </div>
     </div>
 </div>
+    <script>
+        function updateCalendar(act) {
+            var idx = 0;
+            const month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            if(act == 'Right') {
+                idx = month.indexOf(document.getElementById("bulan").innerHTML)
+                idx++
+            } else {
+                idx = month.indexOf(document.getElementById("bulan").innerHTML)
+                idx--
+            }
+            if(idx < 0) {
+                document.getElementById("tahun").innerHTML = parseInt(document.getElementById("tahun").innerHTML) - 1
+                idx = 11
+            }
+            else if(idx > 11)
+                document.getElementById("tahun").innerHTML = parseInt(document.getElementById("tahun").innerHTML) + 1
+            document.getElementById("bulan").innerHTML = month[idx % 12]
+            document.getElementById("sesiOlahan").innerHTML = "";
+            var prev = document.getElementById("clicked")
+            if(prev != null && prev.classList.contains('btn-dark')) {
+                prev.classList.remove('btn-dark')
+                prev.removeAttribute("id", "clicked")
+            }
+            m = month.indexOf(document.getElementById("bulan").innerHTML)
+            const bln = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            name = bln[m];
+            var tahun = document.getElementById("tahun").innerHTML
+        
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("kalender").innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open('GET', "../showCalendar.php?bln=" + name + "&thn=" + tahun, true);
+            xhr.send();
+        };
+        function showBook(e) {
+            var prev = document.getElementById("clicked")
+            if(prev != null && prev.classList.contains('btn-dark')) {
+                prev.classList.remove('btn-dark')
+                prev.removeAttribute("id", "clicked")
+            }
+            e.setAttribute("id", "clicked")
+            e.classList.add('btn-dark')
+            const month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            m = month.indexOf(document.getElementById("bulan").innerHTML) + 1
+
+            var tgl = m + '-' + e.innerHTML + '-' + document.getElementById("tahun").innerHTML
+            let parse = Date.parse(tgl);
+
+            let date = new Date(parse);
+            var tgl = date.getFullYear() + "-" + m.toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0');
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("sesiOlahan").innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open('GET', "updateStok.php?tgl='" + tgl + "'", true);
+            xhr.send();
+        };
+        function pilihTgl() {
+            var tgl = document.getElementById("pilihTanggal").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    // console.log(tgl);
+                    var def = '<option selected disabled>Pilih sesi</option>';
+                    document.getElementById("pilihSesi").innerHTML = def + xhr.responseText;
+                }
+            }
+            xhr.open('GET', "pilihSesi.php?tgl='" + tgl + "'", true);
+            xhr.send();
+        };
+    </script>
 <script>
     function stokDurian() {
     }
