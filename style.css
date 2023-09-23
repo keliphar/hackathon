@@ -57,3 +57,7 @@ section{
     padding: 20px;
     min-height: 200px;
 }
+
+.con{
+    overflow: hidden;
+}

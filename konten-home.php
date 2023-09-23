@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div class="container-fluid scolor-5 py-3">
+    <div class="container-fluid scolor-5 py-3 con">
         <section class="hidden-1">
             <div class="container-fluid custom-box scolor-4">
                 <div class="row">
