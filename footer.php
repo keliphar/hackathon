@@ -30,16 +30,16 @@
                 <p class="ms-5 text-light fs-2">DURIAN SLUMBUNG</p>
                 <p class="ms-5 text-light fs-3">Follow Us On</p>
                 <div class="d-flex flex-row ms-5 mb-3">
-                    <a href="#" class=" pe-2">
+                    <a href="https://www.instagram.com/durkedir" class=" pe-2">
                         <img src="./asset/instagram.png" alt="ig" srcset="" width="30px" height="30px">
                     </a>
-                    <a href="#" class=" pe-2">
+                    <a href="https://www.tiktok.com/@duriankediri" class=" pe-2">
                         <img src="./asset/tiktok.png" alt="tt" srcset="" width="30px" height="30px">
                     </a>
-                    <a href="" class=" pe-2">
+                    <a href="https://www.facebook.com/duriankediribergaransi" class=" pe-2">
                         <img src="./asset/facebook.png" alt="fb" srcset="" width="30px" height="30px">
                     </a>
-                    <a href="" class=" pe-2">
+                    <a href="https://www.youtube.com/c/NDESOEXPLORE" class=" pe-2">
                         <img src="./asset/youtube.png" alt="yt" srcset="" width="30px" height="30px">
                     </a>
                 </div>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p class="text-light info-footer text-center">Durkedir (durian Kediri) 100% BERGARANSI, Meloyo, Mlancu, Kec. Kandangan, Kabupaten Kediri, Jawa Timur 64294</p>
+                                <p class="text-light info-footer text-center">Durkedir (Durian Kediri) 100% BERGARANSI, Meloyo, Mlancu, Kec. Kandangan, Kabupaten Kediri, Jawa Timur 64294</p>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p class="text-light info-footer text-center">WA : 0812-5975-6928 (Mulyono)</p>
+                                <p class="text-light info-footer text-center">WA : 0812-5975-6928 (Mulyono)<br>WA : 0812-5441-1245 (Bang Jono)</p>
                             </div>
                         </div>
                     </div>
