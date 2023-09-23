@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-        echo '<div class="calendar" id="calendar">';
+        echo '<div class="calendar">';
         //kalender header
         echo '<div class="calendar-header">';
         echo '<span class="year" id="tahun">';
@@ -26,19 +26,18 @@
         //batas kalender header
         $ctr = array_search($day, $days);
         //kalender body
-        echo '<div class="calendar-body" id="kalender">';
+        echo '<div class="calendar-body">';
         echo '<div class="calendar-week-day">';
-        echo '<div>Sun</div>';
         echo '<div>Mon</div>';
         echo '<div>Tue</div>';
         echo '<div>Wed</div>';
         echo '<div>Thu</div>';
         echo '<div>Fri</div>';
         echo '<div>Sat</div>';
+        echo '<div>Sun</div>';
         echo '</div>';
-        echo '<div class="calendar-day">';
+        echo '<div class="calendar-day" id="kalender">';
         for($i = $prevMonth - $ctr + 1; $i <= $prevMonth; $i++) {
-            $ctr++;  
             echo '<div>';
             echo '<button type="button" class="btn custom-button" onclick="showBook(this)" disabled>' . $i . '</button>';
             echo '</div>';

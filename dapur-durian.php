@@ -89,7 +89,6 @@
                     
                     //batas kalender baru
                     echo '<div class="col">';
-                    // echo '<body class="light">';
                     // echo '<div class="calendar" id="calendar">';
                     // //kalender header
                     // echo '<div class="calendar-header">';
@@ -141,7 +140,7 @@
                     // echo '</div>';
                     // echo '<div class="col" id="sesiOlahan">';
                     // echo '</div>';
-                    require_once('./kalendar.php');
+                    require_once('./kalendar.php')
                 ?>
             </div>
 
