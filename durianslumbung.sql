@@ -1,4 +1,4 @@
-DROP DATABASE durian_slumbung;
+DROP DATABASE IF EXISTS durian_slumbung;
 CREATE DATABASE durian_slumbung;
 
 USE durian_slumbung;
@@ -24,3 +24,13 @@ CREATE TABLE book_olahan(
 );
 
 INSERT INTO book_olahan VALUES('INV001', '2023-09-01', '2023-09-23', 1, 'Budi', '0810213', 'trf', 0);
+INSERT INTO book_olahan VALUES('INV002', '2023-09-04', '2023-09-25', 1, 'Tina', '081234234', 'trf', 1);
+INSERT INTO book_olahan VALUES('INV003', '2023-09-01', '2023-09-16', 1, 'Lily', '081235334', 'trf', 2);
+INSERT INTO book_olahan VALUES('INV004', '2023-09-12', '2023-09-30', 1, 'Rara', '0810213', 'trf', 0);
+
+CREATE TABLE stok_durian(
+    tanggal DATE PRIMARY KEY,
+    kecil INT,
+    sedang INT,
+    besar INT
+);
