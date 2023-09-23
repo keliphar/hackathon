@@ -22,7 +22,7 @@
                 echo '<div class="col-3 card text-center" style="width: 18rem;">';
                 // echo '<div class="card text-center" style="width: 18rem;">';
                 // echo '<img src="' . $data['img'] . '" class="card-img-top" alt="...">';
-                echo '<img src="./asset/logo.png" class="card-img-top mt-2" alt="...">';
+                echo "<img src='asset/foto_olahan/{$data['img']}' class='card-img-top mt-2'>";
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $data['nama'] . '</h5>';
                 echo '</div>';

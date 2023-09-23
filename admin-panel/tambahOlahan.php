@@ -1,7 +1,7 @@
 <?php
     require_once "../connectDB.php";
 
-    $target_dir = "foto_olahan/";
+    $target_dir = "../asset/foto_olahan/";
     $target_file = $target_dir . basename($_FILES["inputFoto"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
