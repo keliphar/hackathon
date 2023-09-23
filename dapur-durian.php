@@ -1,6 +1,5 @@
 <?php
     $title = "Dapur Durian";
-
     $CSS = "./style.css";
     require_once('connectDB.php');
     include_once 'navbar.php';
@@ -33,7 +32,7 @@
             echo '</div>';
         ?>
     </div>
-    <div class="container-fluid  scolor-5">
+    <div class="container-fluid  scolor-5 con">
         <div class="row">
             <h3 class="text-center pt-4">Pesan Sekarang!!</h3>
             <div class="row mx-5 my-3">
@@ -268,7 +267,6 @@
                 document.getElementById("tahun").innerHTML = parseInt(document.getElementById("tahun").innerHTML) + 1
             document.getElementById("bulan").innerHTML = month[idx % 12]
             var prev = document.getElementById("clicked")
-
             if(prev != null && prev.classList.contains('btn-dark')) {
                 prev.classList.remove('btn-dark')
                 // prev.classList.add('btn-outline-primary')
