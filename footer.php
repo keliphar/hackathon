@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="d-flex justify-content-center my-1">
-                            <a class="nav-link text-light <?= $homeActive ?>" aria-current="page" href="home.php">Home</a>
+                            <a class="nav-link text-light <?= $homeActive ?>" aria-current="page" href="index.php">Home</a>
                         </div>
                     </div>
                 </div>

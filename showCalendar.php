@@ -13,7 +13,7 @@
     echo '<div class="row">';
     for($i = $prevMonth - $ctr + 1; $i <= $prevMonth; $i++) {
         echo '<div class="col">';
-        echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)" disabled>' . $i . '</button>';
+        echo '<button type="button" class="btn custom-button" onclick="showBook(this)" disabled>' . $i . '</button>';
         echo '</div>';
     }
     for($i = 1; $i <= $lastDate; $i++) {
@@ -24,13 +24,13 @@
         }
         $ctr++;
         echo '<div class="col">';
-        echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)">' . $i . '</button>';
+        echo '<button type="button" class="btn custom-button" onclick="showBook(this)">' . $i . '</button>';
         echo '</div>';
     }
     for($i = 1; $ctr % 7 != 0; $i++) {
         $ctr++;
         echo '<div class="col">';
-        echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)" disabled>' . $i . '</button>';
+        echo '<button type="button" class="btn custom-button" onclick="showBook(this)" disabled>' . $i . '</button>';
         echo '</div>';
     }
     echo '</div>';
