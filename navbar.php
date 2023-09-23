@@ -42,10 +42,7 @@
                 <a class="nav-link text-light <?= $aboutActive ?>" href="about-us.php"> About Us</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-            </form>
+                <button class="btn btn-outline-dark pesan-btn btn-sm rounded-pill me-4" type="submit"> &nbsp;&nbsp;Pesan&nbsp;&nbsp; </button>
             </div>
         </div>
     </nav>
