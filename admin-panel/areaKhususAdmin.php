@@ -10,6 +10,10 @@
     // require_once("../connectDB.php");
     require_once("./header.php");
     require_once "../connectDB.php";
+    if (isset($_POST['btndelete'])) {
+        $txt1 = $_POST['txt1'];
+        $stmt = $pdo->query("delete from olahan where nama = '$txt1'");
+    }
 ?>
 <link rel="stylesheet" href="../style-kalender.css">
 <script src="../script-kalender.js"></script>
@@ -104,6 +108,11 @@
                     echo '<img src="../asset/foto_olahan/' . $data['img'] . '" class="card-img-top" alt="...">';
                     echo '<div class="card-body">';
                     echo '<p class="card-text"> <b>' . $data['nama'] . '</b></p>';
+                    echo "<form method='post' action=''>";
+                    $nama = $data['nama'];
+                    echo "<input type='hidden' name='txt1' value='$nama'>";
+                    echo "<input type='submit' name='btndelete' value='Delete' style='padding: 5px; border-radius: 10px; background-color: green; color: white;'></td>";
+                    echo "</form>";
                     echo '</div>';
                     echo '</div>';
                     $count++;
