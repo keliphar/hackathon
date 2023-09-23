@@ -1,88 +1,165 @@
 <?php
     $title = "Dapur Durian";
-    $css = "";
-    include_once 'header.php';
+    $CSS = "./style.css";
+    require_once('connectDB.php');
+    include_once 'navbar.php';
 ?>
-    <div class="m-5">
-        <h1>Durian Slumbung</h1>
-        <h3>Olahan Durian Lokal</h3>
+    <script>
+        AOS.init();
+    </script>
+    <div class="container-fluid p-0 m-0 con">
+        <video preload="TRUE" muted loop autoplay playsinline style="width: 100%;">
+            <source src="asset/Pembuatan Olahan Durian.mp4" type="video/mp4" class="video">
+        </video>
+        <div class="overlay3">
+            <h1 style="font-size: 58px;" data-aos="fade-down" data-aos-duration="2000" data-aos-once="true" data-aos-offset="-150"><b>DAPUR DURIAN</b></h1>
+        </div>
+    </div>
+    <div class="container-fluid scolor-5">
+        <h2 class="text-center pt-4"><b>Pilihan Olahan</b></h2>
         <?php
             $stmt = $pdo->query("SELECT * FROM olahan");
             $count = 0;
-            echo '<div class="row">';
+            echo '<div class="row align-items-center justify-content-evenly pt-5 px-2">';
             while($data = $stmt->fetch()) {
-                if($count % 3 == 0) {
-                    if($count > 0)
-                        echo '</div>';
-                    echo '<div class="row">';
+                if($count % 3 == 0 && $count > 1) {
+                    echo '</div>';
+                    echo '<div class="row align-items-center justify-content-evenly pt-5 px-2">';
                 }
-                echo '<div class="col>"';
-                echo '<div class="card" style="width: 18rem;">';
-                echo '<img src="' . $data['img'] . '" class="card-img-top" alt="...">';
+                echo '<div class="col-3 card text-center" style="width: 18rem;">';
+                // echo '<div class="card text-center" style="width: 18rem;">';
+                // echo '<img src="' . $data['img'] . '" class="card-img-top" alt="...">';
+                echo "<img src='asset/foto_olahan/{$data['img']}' class='card-img-top mt-2'>";
                 echo '<div class="card-body">';
-                echo '<p class="card-text">' . $data['nama'] . '</p>';
+                echo '<h5 class="card-title">' . $data['nama'] . '</h5>';
                 echo '</div>';
                 echo '</div>';
                 $count++;
             }
             echo '</div>';
         ?>
-        <h3>Pesan Sekarang!!</h3>
+    </div>
+    <div class="container-fluid scolor-5 con">
         <div class="row">
-            <?php
-                $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
-                $currentDateTime = new DateTime('now');
-                $date = $currentDateTime->format('Y-m-01');
-                $date_obj = new DateTime($date);
-                $day = $date_obj->format('D');
-                $lastDay = strtotime("Last day of " . $currentDateTime->format('M'));
-                $lastDate = date("d", $lastDay);
-                $prevMonth = strtotime("last day of previous month");
-                $prevMonth = date("d", $prevMonth);
+            <h3 class="text-center pt-4 text-dark fw-bolder">Pesan Sekarang!!</h3>
+            <div class="col-3"></div>
+            <div class="col-6 mx-5 my-3 d-flex justify-content-center" style="margin-left: 200px;">
+                <?php
+                    $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+                    $currentDateTime = new DateTime('now');
+                    $date = $currentDateTime->format('Y-m-01');
+                    $date_obj = new DateTime($date);
+                    $day = $date_obj->format('D');
+                    $lastDay = strtotime("Last day of " . $currentDateTime->format('M'));
+                    $lastDate = date("d", $lastDay);
+                    $prevMonth = strtotime("last day of previous month");
+                    $prevMonth = date("d", $prevMonth);
 
-                echo '<div class="col ms-5 me-5">';
-                echo '<div id="bulan">September</div>';
-                echo '<div id="tahun">2023</div>';
-                echo '<button type="button" class="btn btn-outline-success" onclick="updateCalendar(' . "'Left'" . ')"><</button>';
-                echo "M T W T F S S";
-                echo '<button type="button" class="btn btn-outline-success" onclick="updateCalendar(' . "'Right'" . ')">></button>';
-                $ctr = array_search($day, $days);
-                echo '<div id="kalender">';
-                echo '<div class="row">';
-                for($i = $prevMonth - $ctr + 1; $i <= $prevMonth; $i++) {
-                    echo '<div class="col">';
-                    echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)" disabled>' . $i . '</button>';
-                    echo '</div>';
-                }
-                for($i = 1; $i <= $lastDate; $i++) {
-                    if($ctr % 7 == 0) {
-                        if($ctr > 0)
-                            echo '</div>';
-                        echo '<div class="row">';
-                    }
-                    $ctr++;
-                    echo '<div class="col">';
-                    echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)">' . $i . '</button>';
-                    echo '</div>';
-                }
-                for($i = 1; $ctr % 7 != 0; $i++) {
-                    $ctr++;
-                    echo '<div class="col">';
-                    echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)" disabled>' . $i . '</button>';
-                    echo '</div>';
-                }
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '<div class="col" id="sesiOlahan">';
-                echo '</div>';
-                
-            ?>
+                    //kalender lama
+                    // echo '<div class="col ms-5 me-5">';
+                    // echo '<div id="bulan">September</div>';
+                    // echo '<div id="tahun">2023</div>';
+                    // echo '<button type="button" class="btn btn-outline-success" onclick="updateCalendar(' . "'Left'" . ')"><</button>';
+                    // echo "M T W T F S S";
+                    // echo '<button type="button" class="btn btn-outline-success" onclick="updateCalendar(' . "'Right'" . ')">></button>';
+                    // $ctr = array_search($day, $days);
+                    // echo '<div id="kalender">';
+                    // echo '<div class="row">';
+                    // for($i = $prevMonth - $ctr + 1; $i <= $prevMonth; $i++) {
+                    //     echo '<div class="col">';
+                    //     echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)" disabled>' . $i . '</button>';
+                    //     echo '</div>';
+                    // }
+                    // for($i = 1; $i <= $lastDate; $i++) {
+                    //     if($ctr % 7 == 0) {
+                    //         if($ctr > 0)
+                    //             echo '</div>';
+                    //         echo '<div class="row">';
+                    //     }
+                    //     $ctr++;
+                    //     echo '<div class="col">';   
+                    //     echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)">' . $i . '</button>';
+                    //     echo '</div>';
+                    // }
+                    // for($i = 1; $ctr % 7 != 0; $i++) {
+                    //     $ctr++;
+                    //     echo '<div class="col">';
+                    //     echo '<button type="button" class="btn btn-outline-primary" onclick="showBook(this)" disabled>' . $i . '</button>';
+                    //     echo '</div>';
+                    // }
+                    // echo '</div>';
+                    // echo '</div>';
+                    // echo '</div>';
+                    //batas kalender lama
+
+                    //kalender baru
+                    
+                    //batas kalender baru
+                    echo '<div class="col-6">';
+                    // echo '<div class="calendar" id="calendar">';
+                    // //kalender header
+                    // echo '<div class="calendar-header">';
+                    // echo '<span class="year" id="tahun">';
+                    // echo '2023';
+                    // echo '</span>';
+                    // echo '<div class="month-picker">';
+                    // echo '<button type="button" class="btn btn-no-outline" onclick="updateCalendar(' . "'Left'" . ')"><</button>';
+                    // echo '<span id="bulan">September</span>';
+                    // echo '<button type="button" class="btn btn-no-outline" onclick="updateCalendar(' . "'Right'" . ')">></button>';
+                    // echo '</div>';
+                    // echo '</div>';
+                    // //batas kalender header
+                    // $ctr = array_search($day, $days);
+                    // //kalender body
+                    // echo '<div class="calendar-body" id="kalender">';
+                    // echo '<div class="calendar-week-day">';
+                    // echo '<div>Sun</div>';
+                    // echo '<div>Mon</div>';
+                    // echo '<div>Tue</div>';
+                    // echo '<div>Wed</div>';
+                    // echo '<div>Thu</div>';
+                    // echo '<div>Fri</div>';
+                    // echo '<div>Sat</div>';
+                    // echo '</div>';
+                    // echo '<div class="calendar-day">';
+                    // for($i = $prevMonth - $ctr + 1; $i <= $prevMonth; $i++) {
+                    //     $ctr++;  
+                    //     echo '<div>';
+                    //     echo '<button type="button" class="btn custom-button" onclick="showBook(this)" disabled>' . $i . '</button>';
+                    //     echo '</div>';
+                    // }
+                    // for($i = 1; $i <= $lastDate; $i++) {
+                    //     $ctr++;  
+                    //     echo '<div>';
+                    //     echo '<button type="button" class="btn custom-button" onclick="showBook(this)">' . $i . '</button>';
+                    //     echo '</div>';
+                    // }
+                    // for($i = 1; $ctr % 7 != 0; $i++) {
+                    //     $ctr++;
+                    //     echo '<div>';
+                    //     echo '<button type="button" class="btn custom-button" onclick="showBook(this)" disabled>' . $i . '</button>';
+                    //     echo '</div>';
+                    // }
+                    // echo '</div>'; #close calender body
+                    // echo '</div>';  #close calender
+                    // // echo '</body>'; #light
+                    // echo '</div>'; #close col
+                    // echo '</div>';
+                    // echo '<div class="col" id="sesiOlahan">';
+                    // echo '</div>';
+                    require_once('./kalendar.php')
+                ?>
+            </div>
+            
+            <div class="row">
+                <div class="col-3" style="margin-left: 115px;"></div>
+                <div class="col ms-5">
+                <button type="submit" class="btn btn-light ms-5" data-bs-toggle="modal" data-bs-target="#Book" id="bookbtn">Book Now</button>
+                <h6 class="mt-1 text-dark" style="margin-left: -70px;">*pemesanan > 20 orang booking melalui WA</h6>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <button type="submit" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#Book" id="bookbtn">Book Now</button>
-    <h6>*pemesanan > 20 book by WA</h6>
 
     <div class="modal fade" id="Book" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bookPop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -92,21 +169,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body pb-1">
-                    <form action="booking.php" method="post" id="booking">
+                    <form action="tambahPesanan.php" method="post" id="booking" enctype="multipart/form-data">
                         <div class="row">
                             <div class="row">
                                 <h6>Pilih jadwal</h6>
                             </div>
                             <div class="row">
-                                <input type="date" name="jadwal" id="pilihTanggal" onchange=pilihTgl()>
+                                <input type="date" class="my-2 mx-2" name="jadwal" id="pilihTanggal" onchange=pilihTgl()>
                             </div>
-                            <div class="row">
-                                <div class="col">
+                            <div class="row justify-content-evenly mt-2">
+                                <div class="col-6 text-center">
                                     <select id="pilihSesi" name="pilihSesi">
                                         <option selected disabled>Pilih sesi</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6 text-center">
                                     <select id="pilihOlahan" name="pilihOlahan">
                                         <option selected disabled>Pilih Olahan</option>
                                         <?php
@@ -120,7 +197,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h6>Data Diri</h6>
+                            <h5 class="mt-2">Data Diri</h5>
                             <div class="row">
                                 <div class="col">
                                     <label for="nama"><h6>Nama</h6></label>
@@ -134,25 +211,37 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="orang"><h6>Jumlah Orang</h6></label>
-                                    <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()><br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()>
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="pt-1">x Rp20.000,00</h6>
+                                        </div>
+                                    </div>
+                                    <!-- <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()> -->
                                 </div>
-                                <div class="col">
+                                <!-- <div class="col">
                                     <h6>x Rp20.000</h6>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col" id="warning"></div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <h6>Total harga: </h6>
                                 </div>
-                                <div class="col" id="harga"><h6>0</h6></div>
+                                <!-- <div class="col-1">
+                                    <h6>Rp</h6>
+                                </div> -->
+                                <div class="col-6"><h6>Rp<span id="harga">0</span></h6></div>
                             </div>
-                            <div class="row">
+                            <div class="row my-2">
                                 <div class="col">
                                     <h6>Upload bukti pembayaran</h6>
-                                    <input type="file" id="img" name="img" accept="image/*">
+                                    <input type="file" id="imgTrf" name="imgTrf" accept="image/*">
+                                    <!-- <div class="col" id="warningGambar"></div> -->
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -170,12 +259,20 @@
         function updateHarga() {
             var jum = parseInt(document.getElementById("orang").value)
             if(jum > 9 && jum < 21) {
+                const options = {
+                    style: 'decimal',
+                    currency: 'IDR',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                }
                 document.getElementById("warning").innerHTML = ""
-                document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
+                document.getElementById("harga").innerHTML = new Intl.NumberFormat('id-ID', options).format((jum * 20000))
+                // document.getElementById("harga").innerHTML = (jum * 20000)
+                // document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
             } else {
                 if(!isNaN(jum))
-                    document.getElementById("warning").innerHTML = '<div class="alert alert-danger" role="alert"><h6>Jumlah orang harus 10-20 orang</h6></div>'                    
-                document.getElementById("harga").innerHTML = "<h6>0</h6>"
+                    document.getElementById("warning").innerHTML = '<div class="alert alert-danger mt-1" role="alert"><h6 class="my-auto">Jumlah orang harus 10-20 orang</h6></div>'                    
+                document.getElementById("harga").innerHTML = "0"
             }
         };
         function updateCalendar(act) {
@@ -196,9 +293,10 @@
                 document.getElementById("tahun").innerHTML = parseInt(document.getElementById("tahun").innerHTML) + 1
             document.getElementById("bulan").innerHTML = month[idx % 12]
             var prev = document.getElementById("clicked")
-            if(prev != null && prev.classList.contains('btn-warning')) {
-                prev.classList.remove('btn-warning')
-                prev.classList.add('btn-outline-primary')
+            document.getElementById("sesiOlahan").innerHTML = "";
+            if(prev != null && prev.classList.contains('btn-dark')) {
+                prev.classList.remove('btn-dark')
+                // prev.classList.add('btn-outline-primary')
                 prev.removeAttribute("id", "clicked")
             }
             m = month.indexOf(document.getElementById("bulan").innerHTML)
@@ -217,14 +315,14 @@
         };
         function showBook(e) {
             var prev = document.getElementById("clicked")
-            if(prev != null && prev.classList.contains('btn-warning')) {
-                prev.classList.remove('btn-warning')
-                prev.classList.add('btn-outline-primary')
+            if(prev != null && prev.classList.contains('btn-dark')) {
+                prev.classList.remove('btn-dark')
+                // prev.classList.add('btn-outline-primary')
                 prev.removeAttribute("id", "clicked")
             }
             e.setAttribute("id", "clicked")
-            e.classList.add('btn-warning')
-            e.classList.remove('btn-outline-primary')
+            e.classList.add('btn-dark')
+            // e.classList.remove('btn-outline-primary')
             const month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
             m = month.indexOf(document.getElementById("bulan").innerHTML) + 1
 
@@ -271,6 +369,32 @@
             //     document.getElementById("harga").innerHTML = "<h6>0</h6>"
             // }
         };
+        // function cek() {
+            // console.log('Function called!');
+            // console.log("masuk")
+            // console.log()
+            // var tgl = document.getElementById("pilihTanggal").value;
+            
+            // var xhr = new XMLHttpRequest();
+            // xhr.onreadystatechange = function() {
+            //     if(xhr.readyState == 4 && xhr.status == 200) {
+            //         document.getElementById("warningGambar").innerHTML = xhr.responseText;
+            //     }
+            // }
+            // xhr.open('GET', "cekGambar.php", true);
+            // xhr.send();
+            // console.log(document.getElementById("pilihTanggal").value)
+
+            // var jum = parseInt(document.getElementById("orang").value)
+            // if(jum > 9 && jum < 21) {
+            //     document.getElementById("warning").innerHTML = ""
+            //     document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
+            // } else {
+            //     if(!isNaN(jum))
+            //         document.getElementById("warning").innerHTML = '<div class="alert alert-danger" role="alert"><h6>Jumlah orang harus 10-20 orang</h6></div>'                    
+            //     document.getElementById("harga").innerHTML = "<h6>0</h6>"
+            // }
+        // };
     </script>
 <?php
     include "footer.php";

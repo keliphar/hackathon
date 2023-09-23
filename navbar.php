@@ -24,15 +24,17 @@
     <link rel="stylesheet" href= <?= $CSS ?>>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <link rel="stylesheet" href="style-kalender.css">
+    <script src="script-kalender.js"></script> -->
 </head>
-<body>
+<body class="light">
     <nav class="scolor-3 navbar navbar-expand-lg ">
         <div class="container-fluid scolor">
             <img src="asset/logo.png" alt="" width="70" height="60" class="mx-3">
             <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link text-light <?= $homeActive ?>" aria-current="page" href="home.php">Home</a>
+                <a class="nav-link text-light <?= $homeActive ?>" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link text-light <?= $dapurActive ?>" href="dapur-durian.php">Dapur Durian</a>
