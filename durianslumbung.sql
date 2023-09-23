@@ -19,5 +19,8 @@ CREATE TABLE book_olahan(
     sesi VARCHAR(25),
     nama VARCHAR(25),
     nowa VARCHAR(25),
-    bukti_bayar VARCHAR(25)
+    bukti_bayar VARCHAR(25),
+    status INT(3)
 );
+
+INSERT INTO book_olahan VALUES('INV001', '2023-09-01', '2023-09-23', 1, 'Budi', '0810213', 'trf', 0);
