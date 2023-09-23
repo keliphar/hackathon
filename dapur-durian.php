@@ -146,7 +146,7 @@
             <div class="row">
                 <div class="col ms-5">
                 <button type="submit" class="btn btn-light ms-5" data-bs-toggle="modal" data-bs-target="#Book" id="bookbtn">Book Now</button>
-                <h6 class="mt-1 ms-">*pemesanan > 20 book by WA</h6>
+                <h6 class="mt-1 ms-3">*pemesanan > 20 orang booking melalui WA</h6>
                 </div>
             </div>
         </div>
@@ -169,15 +169,15 @@
                                 <h6>Pilih jadwal</h6>
                             </div>
                             <div class="row">
-                                <input type="date" name="jadwal" id="pilihTanggal" onchange=pilihTgl()>
+                                <input type="date" class="my-2 mx-2" name="jadwal" id="pilihTanggal" onchange=pilihTgl()>
                             </div>
-                            <div class="row">
-                                <div class="col">
+                            <div class="row justify-content-evenly mt-2">
+                                <div class="col-6 text-center">
                                     <select id="pilihSesi" name="pilihSesi">
                                         <option selected disabled>Pilih sesi</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6 text-center">
                                     <select id="pilihOlahan" name="pilihOlahan">
                                         <option selected disabled>Pilih Olahan</option>
                                         <?php
@@ -191,7 +191,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h6>Data Diri</h6>
+                            <h5 class="mt-2">Data Diri</h5>
                             <div class="row">
                                 <div class="col">
                                     <label for="nama"><h6>Nama</h6></label>
@@ -205,22 +205,33 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="orang"><h6>Jumlah Orang</h6></label>
-                                    <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()><br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()>
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="pt-1">x Rp20.000,00</h6>
+                                        </div>
+                                    </div>
+                                    <!-- <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()> -->
                                 </div>
-                                <div class="col">
+                                <!-- <div class="col">
                                     <h6>x Rp20.000</h6>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col" id="warning"></div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <h6>Total harga: </h6>
                                 </div>
-                                <div class="col" id="harga"><h6>0</h6></div>
+                                <!-- <div class="col-1">
+                                    <h6>Rp</h6>
+                                </div> -->
+                                <div class="col-6"><h6>Rp<span id="harga">0</span></h6></div>
                             </div>
-                            <div class="row">
+                            <div class="row my-2">
                                 <div class="col">
                                     <h6>Upload bukti pembayaran</h6>
                                     <input type="file" id="imgTrf" name="imgTrf" accept="image/*">
@@ -242,12 +253,20 @@
         function updateHarga() {
             var jum = parseInt(document.getElementById("orang").value)
             if(jum > 9 && jum < 21) {
+                const options = {
+                    style: 'decimal',
+                    currency: 'IDR',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                }
                 document.getElementById("warning").innerHTML = ""
-                document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
+                document.getElementById("harga").innerHTML = new Intl.NumberFormat('id-ID', options).format((jum * 20000))
+                // document.getElementById("harga").innerHTML = (jum * 20000)
+                // document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
             } else {
                 if(!isNaN(jum))
-                    document.getElementById("warning").innerHTML = '<div class="alert alert-danger" role="alert"><h6>Jumlah orang harus 10-20 orang</h6></div>'                    
-                document.getElementById("harga").innerHTML = "<h6>0</h6>"
+                    document.getElementById("warning").innerHTML = '<div class="alert alert-danger mt-1" role="alert"><h6 class="my-auto">Jumlah orang harus 10-20 orang</h6></div>'                    
+                document.getElementById("harga").innerHTML = "0"
             }
         };
         function updateCalendar(act) {
