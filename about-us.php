@@ -16,7 +16,7 @@ require_once("./navbar.php");
     </div>
 </div>
 
-<div class="container-fluid scolor-5 py-3">
+<div class="container-fluid scolor-5 py-3" style="overflow: hidden;">
     <section class="hidden-1">
         <div class="container-fluid custom-box scolor-4" style="width: 1750px; margin-bottom: 30px; margin-top: 50px;" data-aos="fade" data-aos-duration="2000" data-aos-once="true" data-aos-offset="-150" data-aos-delay="1000">
             <h2><center><b>Desa Mlancu</b></center></h2>

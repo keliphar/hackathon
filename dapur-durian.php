@@ -29,7 +29,7 @@
                 echo '<div class="col-3 card text-center" style="width: 18rem;">';
                 // echo '<div class="card text-center" style="width: 18rem;">';
                 // echo '<img src="' . $data['img'] . '" class="card-img-top" alt="...">';
-                echo "<img src='asset/foto_olahan/{$data['img']}' class='card-img-top mt-2'>";
+                echo "<img src='asset/foto_olahan/{$data['img']}' class='card-img-top mt-2' style='width=260px; height=260px;'>";
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $data['nama'] . '</h5>';
                 echo '</div>';
@@ -172,7 +172,7 @@
                     <form action="tambahPesanan.php" method="post" id="booking" enctype="multipart/form-data">
                         <div class="row">
                             <div class="row">
-                                <h6>Pilih jadwal</h6>
+                                <h5><b>Pilih jadwal</b></h5>
                             </div>
                             <div class="row">
                                 <input type="date" class="my-2 mx-2" name="jadwal" id="pilihTanggal" onchange=pilihTgl()>
@@ -197,15 +197,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h5 class="mt-2">Data Diri</h5>
+                            <h5 class="mt-4"><b>Data Diri</b></h5>
                             <div class="row">
                                 <div class="col">
                                     <label for="nama"><h6>Nama</h6></label>
                                     <input class="w-100 border border-2 border-dark rounded" type="text" name="nama" id="nama" required=""><br>
                                 </div>
                                 <div class="col">
-                                    <label for="nowa"><h6>No Whatsapp</h6></label>
-                                    <input class="w-100 border border-2 border-dark rounded" type="text" name="nowa" id="nowa" required=""><br>
+                                    <label for="nowa"><h6>No. Whatsapp</h6></label>
+                                    <input class="w-100 border border-2 border-dark rounded" type="number" name="nowa" id="nowa" required=""><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -239,7 +239,7 @@
                             </div>
                             <div class="row my-2">
                                 <div class="col">
-                                    <h6>Upload bukti pembayaran</h6>
+                                    <h6 class="mt-4"><b>Upload bukti pembayaran</b></h6>
                                     <input type="file" id="imgTrf" name="imgTrf" accept="image/*">
                                     <!-- <div class="col" id="warningGambar"></div> -->
                                 </div>
