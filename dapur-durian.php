@@ -92,7 +92,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body pb-1">
-                    <form action="booking.php" method="post" id="booking">
+                    <form action="tambahPesanan.php" method="post" id="booking" enctype="multipart/form-data">
                         <div class="row">
                             <div class="row">
                                 <h6>Pilih jadwal</h6>
@@ -152,7 +152,8 @@
                             <div class="row">
                                 <div class="col">
                                     <h6>Upload bukti pembayaran</h6>
-                                    <input type="file" id="img" name="img" accept="image/*">
+                                    <input type="file" id="imgTrf" name="imgTrf" accept="image/*">
+                                    <!-- <div class="col" id="warningGambar"></div> -->
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -271,6 +272,32 @@
             //     document.getElementById("harga").innerHTML = "<h6>0</h6>"
             // }
         };
+        // function cek() {
+            // console.log('Function called!');
+            // console.log("masuk")
+            // console.log()
+            // var tgl = document.getElementById("pilihTanggal").value;
+            
+            // var xhr = new XMLHttpRequest();
+            // xhr.onreadystatechange = function() {
+            //     if(xhr.readyState == 4 && xhr.status == 200) {
+            //         document.getElementById("warningGambar").innerHTML = xhr.responseText;
+            //     }
+            // }
+            // xhr.open('GET', "cekGambar.php", true);
+            // xhr.send();
+            // console.log(document.getElementById("pilihTanggal").value)
+
+            // var jum = parseInt(document.getElementById("orang").value)
+            // if(jum > 9 && jum < 21) {
+            //     document.getElementById("warning").innerHTML = ""
+            //     document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
+            // } else {
+            //     if(!isNaN(jum))
+            //         document.getElementById("warning").innerHTML = '<div class="alert alert-danger" role="alert"><h6>Jumlah orang harus 10-20 orang</h6></div>'                    
+            //     document.getElementById("harga").innerHTML = "<h6>0</h6>"
+            // }
+        // };
     </script>
 <?php
     include "footer.php";

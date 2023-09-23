@@ -2,7 +2,6 @@
     require_once "connectDB.php";
 
     $tgl = $_GET['tgl'];
-    // echo $tgl;
     $sesi1 = 0;
     $sesi2 = 0;
     $sesi3 = 0;
@@ -32,6 +31,5 @@
         $sesi3 = $stmt->fetch();
         echo '<li class="list-group-item">Sesi 3: Not Available</li>';
     }
-
     echo '</ul></div>';
 ?>
