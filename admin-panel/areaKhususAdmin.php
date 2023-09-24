@@ -25,7 +25,8 @@
                 <input type="submit" value="Lihat Order Olahan" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
                 <input type="submit" value="Lihat Order Durian" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
                 <input type="submit" value="Tambah Barang" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
-                <input type="submit" value="Atur Stok" class="btn btn-success mt-4" name="view" style="width: 200px;">
+                <input type="submit" value="Atur Stok" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
+                <input type="submit" value="Lihat Grafik" class="btn btn-success mt-4" name="view" style="width: 200px;">
             </form>
         </div>
         <div class="col bg-body-secondary" id="content">
@@ -163,7 +164,16 @@
                     $count++;
                 }
                 echo '</div>';
-            }else if($viewpage == "Atur Stok"):?>
+            }
+            else if($viewpage == "Lihat Grafik"){
+                echo '<div class="col-10 ps-5 py-5 con">';
+                echo '<h3 class="my-3">Chart Grafik Penjualan</h3>';
+                require_once("./chart.php");
+                echo '</div>';
+
+
+            }
+            else if($viewpage == "Atur Stok"):?>
                 <div class="container-fluid" style="overflow: hidden; margin-top: -25px;">
                         <div class="row">
                             <div class="row mx-5 my-3">
