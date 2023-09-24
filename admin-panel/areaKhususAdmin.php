@@ -22,7 +22,8 @@
         <div class="col-2 bg-dark-subtle vh-100">
             <h1 style="margin-top: 20px;">Fitur Admin</h1>
             <form action="" method="get">
-                <input type="submit" value="Lihat Order" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
+                <input type="submit" value="Lihat Order Olahan" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
+                <input type="submit" value="Lihat Order Durian" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
                 <input type="submit" value="Tambah Barang" class="btn btn-success mt-4" name="view" style="width: 200px;"><br>
                 <input type="submit" value="Atur Stok" class="btn btn-success mt-4" name="view" style="width: 200px;">
             </form>
@@ -31,11 +32,12 @@
             <!-- <h1 style="text-align:center; line-height:75vh;">Welcome to the admin page...</h1> -->
             <?php 
             if(!isset($_GET['view']))
-                $_GET['view'] = 'Lihat Order';
+                $_GET['view'] = 'Lihat Order Olahan';
             
             // if(isset($_GET['view'])){
             $viewpage = $_GET['view'];
-            if($viewpage == "Lihat Order"){
+            if($viewpage == "Lihat Order Olahan"){
+                // echo $viewpage;
                 $stmt = $pdo -> prepare("SELECT inv_id,nama,sesi,tgl_pesan,bukti_bayar,nowa,status from book_olahan ORDER BY tgl_pesan DESC;");
                 $stmt -> execute();
                 $data = $stmt -> fetchAll();
@@ -63,7 +65,50 @@
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            {$key['inv_id']}
+                            <img src='../{$key['bukti_bayar']}' alt='{$key['bukti_bayar']}'>
+                        </div>";
+                        if($key['status']==0) {
+                            echo "<div class='modal-footer'>
+                            <form action='updatePesanan.php' method='post' id='booking'>
+                            <button type='submit' class='btn btn-outline-success' name='konfirmasi' value='berhasil'>Pembayaran Berhasil</button>";
+                            echo "<button type='submit' class='btn btn-outline-danger' name='konfirmasi' value='gagal'>Pembayaran Gagal</button>
+                            <input type='hidden' name='inv_id' value='{$key['inv_id']}'></form>
+                            </div>";
+                        }
+                    echo "</div>
+                    </div>
+                    </div>
+                    ";
+                }
+            }else if($viewpage == "Lihat Order Durian"){
+                $stmt = $pdo -> prepare("SELECT inv_id,nama,tgl_pesan,bukti_bayar,nowa,status from book_durian ORDER BY tgl_pesan DESC;");
+                $stmt -> execute();
+                $data = $stmt -> fetchAll();
+                echo "<h1 style='text-align:center; margin-top: 20px;'>List Orderan</h1>";
+                foreach ($data as $key) {
+                    $outlineModal;
+                    if($key['status']==0){
+                        $outlineModal="warning";
+                    }else if($key['status']==1){
+                        $outlineModal="success";
+                    }else{
+                        $outlineModal="danger";
+                    }
+                    echo "
+                    <button type='button' class='btn btn-".$outlineModal." mt-3' data-bs-toggle='modal' data-bs-target='#".$key['inv_id']."'>
+                    <b>ID Pemesanan : </b>".$key['inv_id']." <b>Nama :</b> '".$key['nama']."' <b>Tanggal Pemesanan : </b>'".$key['tgl_pesan']."' <b>No. WA : </b>'".$key['nowa']."'
+                    </button>
+
+                    
+                    <div class='modal fade' id='".$key['inv_id']."' tabindex='-1' aria-labelledby='".$key['inv_id'].'Label'."' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h1 class='modal-title fs-5' id='".$key['inv_id'].'Label'."'>Bukti Transfer</h1>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                        </div>
+                        <div class='modal-body'>
+                            <img src=../'{$key['bukti_bayar']}'>
                         </div>";
                         if($key['status']==0) {
                             echo "<div class='modal-footer'>

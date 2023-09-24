@@ -43,7 +43,9 @@
                 <a class="nav-link text-light <?= $aboutActive ?>" href="about-us.php"> About Us</a>
                 </li>
             </ul>
-                <button class="btn btn-outline-dark pesan-btn btn-sm rounded-pill me-4" type="submit"> &nbsp;&nbsp;Pesan&nbsp;&nbsp; </button>
+                <a href="pesan.php">
+                    <button class="btn btn-outline-dark pesan-btn btn-sm rounded-pill me-4" type="submit"> &nbsp;&nbsp;Pesan&nbsp;&nbsp; </button>
+                </a>
             </div>
         </div>
         

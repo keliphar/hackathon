@@ -169,7 +169,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body pb-1">
-                    <form action="tambahPesanan.php" method="post" id="booking" enctype="multipart/form-data">
+                    <form action="pesanDurian.php" method="post" id="booking" enctype="multipart/form-data">
                         <div class="row">
                             <div class="row">
                                 <h5><b>Pilih jadwal</b></h5>
@@ -182,21 +182,17 @@
                                 <input type="date" class="my-2 mx-2" name="jadwal" id="pilihTanggal" onchange=pilihTgl() min='<?=$t?>' required>
                             </div>
                             <div class="row justify-content-evenly mt-2">
-                                <div class="col-6 text-center">
-                                    <select id="pilihSesi" name="pilihSesi" required>
+                                <!-- <div class="col-6 text-center">
+                                    <select id="pilihSesi" name="pilihSesi">
                                         <option selected disabled>Pilih sesi</option>
                                     </select>
-                                </div>
-                                <div class="col-6 text-center">
-                                    <select id="pilihOlahan" name="pilihOlahan" required>
-                                        <option selected disabled>Pilih Olahan</option>
-                                        <?php
-                                            $stmt = $pdo->query("SELECT * FROM olahan");
-                                            while($data = $stmt->fetch()) {
-                                                echo '<option value="' . $data['nama'] . '">' . $data['nama'] . '</option>';
-                                            }
-                                        ?>
-                                    </select>
+                                </div> -->
+                                <div class="col-6 text-center" id = "showStok">
+                                    <p>Pilih tanggal untuk melihat stok</p>
+                                    <!-- <select id="pilihOlahan" name="pilihOlahan"> -->
+                                        <!-- <option selected disabled>Pilih Olahan</option> -->
+                                        
+                                    <!-- </select> -->
                                 </div>
                             </div>
                         </div>
@@ -214,14 +210,33 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <label for="orang"><h6>Jumlah Orang</h6></label>
+                                    <label for="orang"><h6>Pesanan</h6></label>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()>
+                                            <input class="w-100 border border-2 border-dark rounded" type="number" name="kecil" id="kecil" required="" min=0 onkeyup=updateHarga() value="0">
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="pt-1">x Rp10.000,00</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="w-100 border border-2 border-dark rounded" type="number" name="sedang" id="sedang" required="" min=0 onkeyup=updateHarga() value="0">
                                         </div>
                                         <div class="col-4">
                                             <h6 class="pt-1">x Rp20.000,00</h6>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="w-100 border border-2 border-dark rounded" type="number" name="besar" id="besar" required="" min=0 onkeyup=updateHarga() value="0">
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="pt-1">x Rp35.000,00</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h6>*diambil harga terendah untuk DP, harga fix tergantung durian yang dipilih saat pengambilan</h6>
                                     </div>
                                     <!-- <input class="w-100 border border-2 border-dark rounded" type="number" name="orang" id="orang" required="" min=10 max=20 onkeyup=updateHarga()> -->
                                 </div>
@@ -236,16 +251,12 @@
                                 <div class="col-6">
                                     <h6>Total harga: </h6>
                                 </div>
-                                <!-- <div class="col-1">
-                                    <h6>Rp</h6>
-                                </div> -->
                                 <div class="col-6"><h6>Rp<span id="harga">0</span></h6></div>
                             </div>
                             <div class="row my-2">
                                 <div class="col">
-                                    <h6 class="mt-4"><b>Upload bukti pembayaran</b></h6>
-                                    <input type="file" id="imgTrf" name="imgTrf" accept="image/*">
-                                    <!-- <div class="col" id="warningGambar"></div> -->
+                                    <h6 class="mt-4"><b>Upload bukti DP</b></h6>
+                                    <input type="file" id="imgTrf" name="imgTrf" accept="image/*" required>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -261,23 +272,16 @@
     </div>
     <script>
         function updateHarga() {
-            var jum = parseInt(document.getElementById("orang").value)
-            if(jum > 9 && jum < 21) {
-                const options = {
-                    style: 'decimal',
-                    currency: 'IDR',
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                }
-                document.getElementById("warning").innerHTML = ""
-                document.getElementById("harga").innerHTML = new Intl.NumberFormat('id-ID', options).format((jum * 20000))
-                // document.getElementById("harga").innerHTML = (jum * 20000)
-                // document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
-            } else {
-                if(!isNaN(jum))
-                    document.getElementById("warning").innerHTML = '<div class="alert alert-danger mt-1" role="alert"><h6 class="my-auto">Jumlah orang harus 10-20 orang</h6></div>'                    
-                document.getElementById("harga").innerHTML = "0"
+            var kecil = parseInt(document.getElementById("kecil").value), sedang = parseInt(document.getElementById("sedang").value), besar = parseInt(document.getElementById("besar").value)
+            const options = {
+                style: 'decimal',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
             }
+            total = (kecil * 10000) + (sedang * 20000) + (besar * 35000);
+            console.log(total)
+            document.getElementById("harga").innerHTML = new Intl.NumberFormat('id-ID', options).format(total)
         };
         function updateCalendar(act) {
             var idx = 0;
@@ -300,7 +304,6 @@
             document.getElementById("sesiOlahan").innerHTML = "";
             if(prev != null && prev.classList.contains('btn-dark')) {
                 prev.classList.remove('btn-dark')
-                // prev.classList.add('btn-outline-primary')
                 prev.removeAttribute("id", "clicked")
             }
             m = month.indexOf(document.getElementById("bulan").innerHTML)
@@ -321,12 +324,10 @@
             var prev = document.getElementById("clicked")
             if(prev != null && prev.classList.contains('btn-dark')) {
                 prev.classList.remove('btn-dark')
-                // prev.classList.add('btn-outline-primary')
                 prev.removeAttribute("id", "clicked")
             }
             e.setAttribute("id", "clicked")
             e.classList.add('btn-dark')
-            // e.classList.remove('btn-outline-primary')
             const month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
             m = month.indexOf(document.getElementById("bulan").innerHTML) + 1
 
@@ -346,59 +347,19 @@
             xhr.send();
         };
         function pilihTgl() {
-            // console.log('Function called!');
-            // console.log("masuk")
-            // console.log()
             var tgl = document.getElementById("pilihTanggal").value;
 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4 && xhr.status == 200) {
-                    // console.log(tgl);
-                    var def = '<option selected disabled>Pilih sesi</option>';
-                    document.getElementById("pilihSesi").innerHTML = def + xhr.responseText;
+                    // var def = '<option selected disabled>Pilih sesi</option>';
+                    console.log(tgl);
+                    document.getElementById("showStok").innerHTML = xhr.responseText;
                 }
             }
-            xhr.open('GET', "pilihSesi.php?tgl='" + tgl + "'", true);
+            xhr.open('GET', "showStok.php?tgl='" + tgl + "'", true);
             xhr.send();
-            // console.log(document.getElementById("pilihTanggal").value)
-
-            // var jum = parseInt(document.getElementById("orang").value)
-            // if(jum > 9 && jum < 21) {
-            //     document.getElementById("warning").innerHTML = ""
-            //     document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
-            // } else {
-            //     if(!isNaN(jum))
-            //         document.getElementById("warning").innerHTML = '<div class="alert alert-danger" role="alert"><h6>Jumlah orang harus 10-20 orang</h6></div>'                    
-            //     document.getElementById("harga").innerHTML = "<h6>0</h6>"
-            // }
         };
-        // function cek() {
-            // console.log('Function called!');
-            // console.log("masuk")
-            // console.log()
-            // var tgl = document.getElementById("pilihTanggal").value;
-            
-            // var xhr = new XMLHttpRequest();
-            // xhr.onreadystatechange = function() {
-            //     if(xhr.readyState == 4 && xhr.status == 200) {
-            //         document.getElementById("warningGambar").innerHTML = xhr.responseText;
-            //     }
-            // }
-            // xhr.open('GET', "cekGambar.php", true);
-            // xhr.send();
-            // console.log(document.getElementById("pilihTanggal").value)
-
-            // var jum = parseInt(document.getElementById("orang").value)
-            // if(jum > 9 && jum < 21) {
-            //     document.getElementById("warning").innerHTML = ""
-            //     document.getElementById("harga").innerHTML = "<h6>" + (jum * 20000) + "</h6>"
-            // } else {
-            //     if(!isNaN(jum))
-            //         document.getElementById("warning").innerHTML = '<div class="alert alert-danger" role="alert"><h6>Jumlah orang harus 10-20 orang</h6></div>'                    
-            //     document.getElementById("harga").innerHTML = "<h6>0</h6>"
-            // }
-        // };
     </script>
 <?php
     include "footer.php";
