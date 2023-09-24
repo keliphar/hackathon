@@ -1,0 +1,98 @@
+*{
+    font-family: 'proxima-nova', sans-serif;
+}
+
+.scolor-1{
+    background-color: #a67c51;
+}
+
+.scolor-2{
+    background-color: #fff3c6;
+}
+
+.scolor-3{
+    background-color: #629840;
+}
+
+.scolor-4{
+    background-color: #8e6441;
+}
+
+.scolor-5{
+    background-color: #f7e6a8;
+}
+
+.con { 
+    color: white;
+    position: relative; 
+    background-color: #f7e6a8;
+}
+
+.con video {
+    position:relative;
+    z-index:0;
+    width: 100%;
+}
+
+.overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    justify-content: center;
+    margin-top: 300px;
+    margin-left: 640px;
+}
+
+.overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    justify-content: center;
+    margin-top: 300px;
+    margin-left: 640px;
+}
+
+.overlay3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    justify-content: center;
+    margin-top: 300px;
+    margin-left: 700px;
+}
+
+.pesan-btn{
+    padding: 5px 15px;
+}
+
+section{
+    display: grid;
+    place-items: center;
+    align-content: center;
+    min-height: 300px;
+}
+
+.credit{
+    font-size: 10px;
+}
+
+.custom-box{
+    width: 80%;
+    border-radius: 15px; /* Adds rounded edges */
+    border: 2px solid #3d441e; /* Adds an outline with a black color (you can adjust the color) */
+    background-color: #a2a569; /* Sets the background color (you can adjust the color) */
+    padding: 20px;
+    min-height: 200px;
+}
+
+
+.con{
+    overflow: hidden;
+}
+
+.info-footer{
+    font-size: 14px;
+}
