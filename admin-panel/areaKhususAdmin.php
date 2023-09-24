@@ -21,6 +21,7 @@
                 <input type="submit" value="Lihat Order" class="btn btn-success mt-4" name="view">
                 <input type="submit" value="Tambah Barang" class="btn btn-success mt-4" name="view">
                 <input type="submit" value="Atur Stok" class="btn btn-success mt-4" name="view">
+                <input type="submit" value="Lihat Grafik" class="btn btn-success mt-4" name="view">
             </form>
         </div>
         <div class="col bg-body-secondary" id="content">
@@ -109,6 +110,13 @@
                     $count++;
                 }
                 echo '</div>';
+            }else if($viewpage == "Lihat Grafik"){
+                echo '<div class="col-10 ps-5 py-5 con">';
+                echo '<h3 class="my-3">Chart Grafik Penjualan</h3>';
+                require_once("./chart.php");
+                echo '</div>';
+
+
             }else if($viewpage == "Atur Stok"):?>
                 <div class="container-fluid scolor-5 con">
                         <div class="row">
